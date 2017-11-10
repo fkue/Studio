@@ -28,32 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_Login = new System.Windows.Forms.Button();
             this.txt_username = new System.Windows.Forms.TextBox();
             this.txt_password = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // button_Login
             // 
-            this.button1.Location = new System.Drawing.Point(116, 225);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_Login.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Login.AutoSize = true;
+            this.button_Login.Location = new System.Drawing.Point(132, 226);
+            this.button_Login.Name = "button_Login";
+            this.button_Login.Size = new System.Drawing.Size(75, 23);
+            this.button_Login.TabIndex = 0;
+            this.button_Login.Text = "Login";
+            this.button_Login.UseVisualStyleBackColor = true;
+            this.button_Login.Click += new System.EventHandler(this.button1_Click);
             // 
             // txt_username
             // 
-            this.txt_username.Location = new System.Drawing.Point(116, 70);
+            this.txt_username.Location = new System.Drawing.Point(120, 156);
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(100, 20);
             this.txt_username.TabIndex = 1;
             // 
             // txt_password
             // 
-            this.txt_password.Location = new System.Drawing.Point(116, 97);
+            this.txt_password.Location = new System.Drawing.Point(120, 182);
             this.txt_password.Name = "txt_password";
+            this.txt_password.PasswordChar = '*';
             this.txt_password.Size = new System.Drawing.Size(100, 20);
             this.txt_password.TabIndex = 2;
             // 
@@ -61,10 +66,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 370);
+            this.ClientSize = new System.Drawing.Size(337, 279);
             this.Controls.Add(this.txt_password);
             this.Controls.Add(this.txt_username);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_Login);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -75,7 +80,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_Login;
         private System.Windows.Forms.TextBox txt_username;
         private System.Windows.Forms.TextBox txt_password;
     }
