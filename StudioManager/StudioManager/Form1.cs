@@ -25,7 +25,8 @@ namespace StudioManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlConnection con = new MySqlConnection("server=sql11.freemysqlhosting.net; username=sql11204165; password=uNEp4qPhYs; database=sql11204165;");
+            //MySqlConnection con = new MySqlConnection("server=sql11.freemysqlhosting.net; username=sql11204165; password=uNEp4qPhYs; database=sql11204165;");
+            MySqlConnection con = Properties.Settings.Default.Context.
             //MySqlCommand cmd = new MySqlCommand("SELECT * FROM Login WHERE username='"+txt_username.Text+"' AND password='"+ txt_password.Text + "'", con);
             MySqlCommand cmd = new MySqlCommand("SELECT count(*) as cnt from Login where username = @usr and password = @pwd", con);
             cmd.Parameters.Clear();
@@ -38,10 +39,17 @@ namespace StudioManager
                 DialogResult dialog = MessageBox.Show("Willkommen, " + txt_username.Text +"!");
                 if (dialog == DialogResult.OK)
                 {
-                    LoadingScreen ls = new LoadingScreen();
                     this.Hide();
-                    ls.ShowDialog();
-                    this.Close();
+                    
+                    LoadingScreen ls = new LoadingScreen();
+                    ls.Show();
+                    System.Threading.Thread.Sleep(5000);
+                    ls.Close();
+                    ls.Dispose();
+
+                    MainWindow mw = new MainWindow();
+                   
+                    mw.Show();
                 }
             } else {
                 MessageBox.Show("Falsche Login Daten");

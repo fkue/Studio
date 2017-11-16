@@ -24,11 +24,7 @@ namespace StudioManager
 
         private void LoadingScreen_Load(object sender, EventArgs e)
         {
-            System.Threading.Thread.Sleep(5000);
-            MainWindow mw = new MainWindow();
-            this.Hide();
-            mw.ShowDialog();
-            this.Close();
+    
         }
     }
 }
