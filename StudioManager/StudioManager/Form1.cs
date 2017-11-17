@@ -26,9 +26,7 @@ namespace StudioManager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //MySqlConnection con = new MySqlConnection("server=sql11.freemysqlhosting.net; username=sql11204165; password=uNEp4qPhYs; database=sql11204165;");
-            MySqlConnection con = System.Configuration.ConfigurationManager.ConnectionStrings["StudioDBConnection"].ConnectionString;
-            //MySqlCommand cmd = new MySqlCommand("SELECT * FROM Login WHERE username='"+txt_username.Text+"' AND password='"+ txt_password.Text + "'", con);
+            MySqlConnection con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySql"].ConnectionString);
             MySqlCommand cmd = new MySqlCommand("SELECT count(*) as cnt from Login where username = @usr and password = @pwd", con);
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@usr", txt_username.Text);
@@ -56,6 +54,22 @@ namespace StudioManager
                 MessageBox.Show("Falsche Login Daten");
             }
             con.Close();
+        }
+
+        private void txt_password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                button_Login.PerformClick();
+            }
+        }
+
+        private void txt_username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                button_Login.PerformClick();
+            }
         }
     }
 }
