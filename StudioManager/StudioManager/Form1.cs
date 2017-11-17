@@ -21,11 +21,12 @@ namespace StudioManager
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_Login(object sender, EventArgs e)
         {
+            
             MySqlConnection con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySql"].ConnectionString);
             MySqlCommand cmd = new MySqlCommand("SELECT count(*) as cnt from Login where username = @usr and password = @pwd", con);
             cmd.Parameters.Clear();
@@ -69,7 +70,10 @@ namespace StudioManager
             if (e.KeyCode == Keys.Return)
             {
                 button_Login.PerformClick();
+                
             }
         }
+
+        
     }
 }
