@@ -28,40 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.txt_rf = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // txt_rf
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = global::StudioManager.Properties.Resources.images;
-            this.pictureBox1.InitialImage = global::StudioManager.Properties.Resources.images;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(215, 237);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.txt_rf.BackColor = System.Drawing.Color.White;
+            this.txt_rf.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txt_rf.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txt_rf.Font = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_rf.Location = new System.Drawing.Point(392, 567);
+            this.txt_rf.Multiline = true;
+            this.txt_rf.Name = "txt_rf";
+            this.txt_rf.ReadOnly = true;
+            this.txt_rf.Size = new System.Drawing.Size(103, 57);
+            this.txt_rf.TabIndex = 0;
+            this.txt_rf.Text = "RUPERTI \r\nFITNESS";
+            this.txt_rf.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LoadingScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.BackgroundImage = global::StudioManager.Properties.Resources.logoruperti;
+            this.ClientSize = new System.Drawing.Size(494, 623);
             this.ControlBox = false;
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.txt_rf);
             this.Name = "LoadingScreen";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.LoadingScreen_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txt_rf;
     }
 }

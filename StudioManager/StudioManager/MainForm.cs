@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace StudioManager
 {
-    public partial class MainWindow : Form
+    public partial class MainForm : Form
     {
-        public MainWindow()
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e) {
+            
+        }
+        
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
+            Environment.Exit(0);
         }
     }
 }
