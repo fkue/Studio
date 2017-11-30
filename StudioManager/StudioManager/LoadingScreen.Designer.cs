@@ -33,10 +33,12 @@
             // 
             // txt_rf
             // 
+            this.txt_rf.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txt_rf.BackColor = System.Drawing.Color.White;
             this.txt_rf.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txt_rf.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txt_rf.Font = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_rf.HideSelection = false;
             this.txt_rf.Location = new System.Drawing.Point(392, 567);
             this.txt_rf.Multiline = true;
             this.txt_rf.Name = "txt_rf";

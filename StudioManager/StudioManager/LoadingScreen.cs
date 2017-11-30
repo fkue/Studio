@@ -24,7 +24,7 @@ namespace StudioManager
 
         private void LoadingScreen_Load(object sender, EventArgs e)
         {
-    
+            txt_rf.BringToFront();
         }
     }
 }

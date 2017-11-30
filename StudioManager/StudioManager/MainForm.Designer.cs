@@ -36,9 +36,10 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.btn_signOut = new System.Windows.Forms.Button();
+            this.btn_exit = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txt_UserInfo = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +81,7 @@
             this.btn_employees.Text = "Mitarbeiter Übersicht";
             this.btn_employees.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_employees.UseVisualStyleBackColor = false;
+            this.btn_employees.Click += new System.EventHandler(this.btn_employees_Click);
             // 
             // btn_workoutPlans
             // 
@@ -116,9 +118,10 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(150, 150);
             this.button6.TabIndex = 6;
-            this.button6.Text = "button6";
+            this.button6.Text = "Webcam Tests";
             this.button6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -146,18 +149,19 @@
             this.button8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button8.UseVisualStyleBackColor = false;
             // 
-            // btn_signOut
+            // btn_exit
             // 
-            this.btn_signOut.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_signOut.FlatAppearance.BorderSize = 0;
-            this.btn_signOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_signOut.Location = new System.Drawing.Point(324, 339);
-            this.btn_signOut.Name = "btn_signOut";
-            this.btn_signOut.Size = new System.Drawing.Size(150, 150);
-            this.btn_signOut.TabIndex = 9;
-            this.btn_signOut.Text = "Abmelden";
-            this.btn_signOut.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_signOut.UseVisualStyleBackColor = false;
+            this.btn_exit.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_exit.FlatAppearance.BorderSize = 0;
+            this.btn_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_exit.Location = new System.Drawing.Point(324, 339);
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.Size = new System.Drawing.Size(150, 150);
+            this.btn_exit.TabIndex = 9;
+            this.btn_exit.Text = "Beenden";
+            this.btn_exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_exit.UseVisualStyleBackColor = false;
+            this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
             // menuStrip1
             // 
@@ -172,15 +176,25 @@
             // gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem
             // 
             this.gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem.Name = "gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem";
-            this.gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem.Size = new System.Drawing.Size(212, 20);
+            this.gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem.Size = new System.Drawing.Size(211, 20);
             this.gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem.Text = "GET THE FKING OTHER MENU STRIP";
+            // 
+            // txt_UserInfo
+            // 
+            this.txt_UserInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txt_UserInfo.Location = new System.Drawing.Point(0, 497);
+            this.txt_UserInfo.Name = "txt_UserInfo";
+            this.txt_UserInfo.Size = new System.Drawing.Size(486, 20);
+            this.txt_UserInfo.TabIndex = 11;
+            this.txt_UserInfo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 499);
-            this.Controls.Add(this.btn_signOut);
+            this.ClientSize = new System.Drawing.Size(486, 517);
+            this.Controls.Add(this.txt_UserInfo);
+            this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -213,8 +227,9 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button btn_signOut;
+        private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gETTHEFKINGOTHERMENUSTRIPToolStripMenuItem;
+        private System.Windows.Forms.TextBox txt_UserInfo;
     }
 }

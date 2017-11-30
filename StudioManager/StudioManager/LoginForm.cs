@@ -17,9 +17,10 @@ namespace StudioManager {
         }
 
         #region variables for the connection/command
-        //private static MySqlConnection con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySql"].ConnectionString);
-        private static MySqlConnection con = globalSettings.con;
-        private static MySqlCommand cmd = new MySqlCommand("SELECT count(*) as cnt from Login where username = @usr and password = @pwd", con);
+        //private static MySqlConnection con = new MySqlConnection("server=sql11.freemysqlhosting.net; username=sql11204165; password=uNEp4qPhYs; database=sql11204165;");
+        //private static MySqlConnection con = globalSettings.con; 
+        private static MySqlConnection con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySql"].ConnectionString);
+        private static MySqlCommand cmd = new MySqlCommand("SELECT * from Login where username = @usr", con);
         #endregion
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -30,7 +31,7 @@ namespace StudioManager {
                 con.Close();
                 txt_Status.ForeColor = Color.Green;
                 txt_Status.Text = "Verbindung konnte erfolgreich hergestellt werden.";
-            } catch (Exception) {
+            } catch (Exception ex) {
                 txt_Status.ForeColor = Color.Red;
                 txt_Status.Text = "Verbindung konnte nicht hergestellt werden.";
             }
@@ -64,33 +65,39 @@ namespace StudioManager {
             //otherwise a Messagebox will pop up, telling the user, the login attempt failed.
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@usr", txt_username.Text);
-            cmd.Parameters.AddWithValue("@pwd", txt_password.Text);
-
             con.Open();
-            if (cmd.ExecuteScalar().ToString() == "1") {
-                DialogResult dialog = MessageBox.Show("Willkommen, " + txt_username.Text + "!");
-                if (dialog == DialogResult.OK) {
-                    this.Hide();
+            //Create a Reader, who just executes the Command, it should have a User now. Hash that password and verify it with the plaintext, the user just entered.
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    if (BCrypt.CheckPassword(txt_password.Text, reader.GetString(2)))
+                    {
+                        this.Hide();
 
-                    LoadingScreen ls = new LoadingScreen();
-                    ls.Show();
-                    System.Threading.Thread.Sleep(3000);
-                    ls.Close();
-                    ls.Dispose();
+                        LoadingScreen ls = new LoadingScreen();
+                        ls.Show();
+                        //Reactivate after finishing
+                        //System.Threading.Thread.Sleep(3000);
+                        ls.Close();
+                        ls.Dispose();
 
-                    MainForm mw = new MainForm();
-
-                    mw.Show();
+                        //Send the User ID (which is at Array[0]), so that the main program actually knows, who its working with.
+                        MainForm mw = new MainForm(reader.GetInt32(0));
+                        mw.Show();
+                    } 
                 }
-            } else {
-                MessageBox.Show("Falsche Login Daten");
+            } else
+            {
+                MessageBox.Show("Falsche Login Daten", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             con.Close();
         }
         #endregion
 
         #region Handle Return Presses
-        
         //When the user is in the username or password txtbox and presses Return, it performs a click on the Login Button (each)
         private void txt_password_KeyDown(object sender, KeyEventArgs e) {
             if (e.KeyCode == Keys.Return) {
@@ -106,7 +113,7 @@ namespace StudioManager {
         }
         #endregion
 
-        #region MenuStrip Element
+        #region MenuStrip Elements
         //Creates new AboutForm, Hides LoginForm meanwhile, until the User decides to close the AboutForm
         private void ueberToolStripMenuItem_Click(object sender, EventArgs e) {
             AboutForm af = new AboutForm();
@@ -127,3 +134,75 @@ namespace StudioManager {
 
     }
 }
+
+//MySqlConnection con = new MySqlConnection("server = sql11.freemysqlhosting.net ; username =sql11204165 ; password = uNEp4qPhYs; database =sql11204165 ;");
+//MySqlCommand cmd = new MySqlCommand("SELECT * from Login where username = @usr", con);
+
+////Checks for Username and Password. If it finds each (as a pair) in the Database, it will login, 
+////otherwise a Messagebox will pop up, telling the user, the login attempt failed.
+//cmd.Parameters.Clear();
+           
+//            cmd.Parameters.AddWithValue("@usr", "lois");
+//            con.Open();
+//            string salt = BCrypt.GenerateSalt();
+
+//MySqlDataReader reader = cmd.ExecuteReader();
+//RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+//Console.WriteLine("Random Salt to be stored: " + "STFU" );
+//            if (reader.HasRows)
+//            {
+                
+//                Console.WriteLine("Reader has Rows!");
+//                while (reader.Read())
+//                {
+//                    Console.WriteLine(BCrypt.CheckPassword("lois", reader.GetString(2)));
+//                    Console.WriteLine(reader.GetInt32(0) + " " + reader.GetString(1) + " " + reader.GetString(2) + " " + reader.GetString(3)); 
+//                    //Console.WriteLine(SimpleHash.VerifyHash("lois", "MD5", reader.GetString(2)));
+
+
+
+//                }
+//            } else
+//            {
+//                Console.WriteLine("Falsche Login Daten!");
+//            }
+//            //Hash: 67FmuX53gOInjHlnjwnJfRgpsXKi
+
+//            reader.Close();
+
+#region LoginButtonOriginal
+//private void btn_Login(object sender, EventArgs e)
+//{
+
+//    //Checks for Username and Password. If it finds each (as a pair) in the Database, it will login, 
+//    //otherwise a Messagebox will pop up, telling the user, the login attempt failed.
+//    cmd.Parameters.Clear();
+//    cmd.Parameters.AddWithValue("@usr", txt_username.Text);
+//    cmd.Parameters.AddWithValue("@pwd", txt_password.Text);
+
+//    con.Open();
+//    if (cmd.ExecuteScalar().ToString() == "1")
+//    {
+//        DialogResult dialog = MessageBox.Show("Willkommen, " + txt_username.Text + "!");
+//        if (dialog == DialogResult.OK)
+//        {
+//            this.Hide();
+
+//            LoadingScreen ls = new LoadingScreen();
+//            ls.Show();
+//            System.Threading.Thread.Sleep(3000);
+//            ls.Close();
+//            ls.Dispose();
+
+//            MainForm mw = new MainForm();
+
+//            mw.Show();
+//        }
+//    }
+//    else
+//    {
+//        MessageBox.Show("Falsche Login Daten");
+//    }
+//    con.Close();
+//}
+#endregion
