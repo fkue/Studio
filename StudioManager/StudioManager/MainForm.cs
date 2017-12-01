@@ -15,11 +15,14 @@ namespace StudioManager
     {
         private int id;
         private static MySqlConnection con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySql"].ConnectionString);
+        //Checks for the Loginname of the User with the specified ID
         private static MySqlCommand cmd = new MySqlCommand("SELECT * from Login where id = @id", con);
-
+        
+        #region Constructor
         public MainForm(int id)
         {
             InitializeComponent();
+            //Saves the <param id>, so the Loginname can be displayed at the bottom.
             this.id = id;
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id", id);
@@ -27,6 +30,8 @@ namespace StudioManager
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
+                //Display Message & Checks, whether the User is "Mitarbeiter" or "Administrator"
+                //In Case of a Mitarbeiter, hide specific buttons
                 txt_UserInfo.Text = "Hallo " + reader.GetString(1) + "!";
                 if (reader.GetString(3).Equals("Mitarbeiter"))
                 {
@@ -35,15 +40,14 @@ namespace StudioManager
             }
             con.Close();
         }
+        #endregion  
 
         private void MainForm_Load(object sender, EventArgs e) {
             
         }
         
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
-            Environment.Exit(0);
-        }
-
+        
+        #region Buttons
         private void btn_employees_Click(object sender, EventArgs e)
         {
             WorkersOverview wo = new WorkersOverview();
@@ -64,5 +68,11 @@ namespace StudioManager
             wt.Show();
             this.Show();
         }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+        #endregion
     }
 }

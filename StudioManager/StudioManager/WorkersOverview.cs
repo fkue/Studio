@@ -23,6 +23,7 @@ namespace StudioManager
             this.InitializeGridView();
         }
 
+        #region Create GridView to properly Display the Database Data. Can be Copy Pasted
         private void InitializeGridView()
         {
             using (MySqlConnection con = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["MySql"].ConnectionString))
@@ -42,11 +43,14 @@ namespace StudioManager
                 }
             }
         }
+        #endregion
 
+        #region Dialog for "Create a new Login"
         private void btn_createNewLogin_Click(object sender, EventArgs e)
         {
             CreateLogin cl = new CreateLogin();
             cl.ShowDialog();
         }
+        #endregion
     }
 }
